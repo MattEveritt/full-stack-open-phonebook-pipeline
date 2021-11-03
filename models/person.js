@@ -3,7 +3,7 @@ const uniqueValidator = require('mongoose-unique-validator')
 mongoose.set('useCreateIndex', true)
 
 // eslint-disable-next-line no-undef
-const url = process.env.MONGODB_URI
+const url = 'mattheweveritt:scooby900410@cluster0.o632d.mongodb.net/phone-book?retryWrites=true&w=majority'
 
 console.log('connecting to', url)
 
