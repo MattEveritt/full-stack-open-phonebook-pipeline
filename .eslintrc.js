@@ -1,10 +1,12 @@
 module.exports = {
     'env': {
         'browser': true,
-        'commonjs': true,
-        'es2021': true
+        'commonjs': true
     },
-    'extends': 'eslint:recommended',
+    'extends': [
+        'eslint:recommended',
+        'react-app'
+    ],
     'parserOptions': {
         'ecmaVersion': 12
     },
@@ -13,10 +15,7 @@ module.exports = {
             'error',
             4
         ],
-        'linebreak-style': [
-            'error',
-            'windows'
-        ],
+
         'quotes': [
             'error',
             'single'

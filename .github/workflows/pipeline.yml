@@ -6,7 +6,7 @@ on:
       - main
       - matt
   pull_request:
-    branches: [master]
+    branches: [main]
     types: [opened,synchronize]
 
 jobs:
@@ -20,22 +20,20 @@ jobs:
       - name: npm install
         run: npm install
       - name: lint
-        run: npm run eslint
+        run: npm run lint
       - name: build
         run: npm run build:ui
-      - name: test
-        run: npm run test
-      # - name: e2e tests
-      #   uses: cypress-io/github-action@v2
-      #   with:
-      #     command: npx cypress run
-      #     start: npm start
-      #     wait-on: http://localhost:3000
+      - name: e2e tests
+        uses: cypress-io/github-action@v2
+        with:
+          command: npx cypress run
+          start: npm start
+          wait-on: http://localhost:3001
       - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
         if: ${{ github.event_name == 'pull_request' || contains(github.event.commits.*.message, '#skip')}}
         with:
           heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "afternoon-tundra-99825.herokuapp.com" #Must be unique in Heroku
+          heroku_app_name: "afternoon-tundra-99825" #Must be unique in Heroku
           heroku_email: "meeveritt@gmail.com"
           healthcheck: "https://afternoon-tundra-99825.herokuapp.com/health"
           checkstring: "ok"
@@ -47,10 +45,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           DEFAULT_BUMP: patch
-      - uses: 8398a7/action-slack@v3
-        with:
-          status: ${{ job.status }}
-          fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
-        if: always() # Pick up events even if the job fails or is canceled.
+      # - uses: 8398a7/action-slack@v3
+      #   with:
+      #     status: ${{ job.status }}
+      #     fields: repo,message,commit,author,action,eventName,ref,workflow,job,took # selectable (default: repo,message)
+      #   env:
+      #     SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }} # required
+      #   if: always() # Pick up events even if the job fails or is canceled.
