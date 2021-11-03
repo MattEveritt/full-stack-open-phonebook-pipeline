@@ -7,7 +7,7 @@
     "dev": "nodemon index.js",
     "start": "node index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build:ui": "rm -rf build && cd ./client && npm run build --prod && cp -r build ./full-stack-part3-submission",
+    "build:ui": "del build && cd ./client && npm run build --prod && cp -r build ./full-stack-part3-submission",
     "deploy": "git push heroku main",
     "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
     "logs:prod": "heroku logs --tail",
@@ -35,7 +35,7 @@
   "devDependencies": {
     "@typescript-eslint/eslint-plugin": "^4.0.0",
     "@typescript-eslint/parser": "^4.0.0",
-    "babel-eslint": "^10.0.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^7.5.0",
     "eslint-config-react-app": "^6.0.0",
     "eslint-plugin-flowtype": "^5.2.0",
