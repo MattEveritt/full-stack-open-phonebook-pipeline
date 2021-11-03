@@ -6,12 +6,12 @@ const Notification = ({ successMessage, failureMessage }) => {
     }
     return (
         <>
-            {successMessage === null  
-                ? <div className="failure">{failureMessage}</div> 
-                : <div className="success">{successMessage}</div>
-            }
+            {successMessage === null ? (
+                <div className="failure">{failureMessage}</div>
+            ) : (
+                <div className="success">{successMessage}</div>
+            )}
         </>
-
     )
 }
 
