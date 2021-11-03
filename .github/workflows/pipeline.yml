@@ -31,15 +31,15 @@ jobs:
       #     command: npx cypress run
       #     start: npm start
       #     wait-on: http://localhost:3000
-      - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
-        if: ${{ github.event_name == 'pull_request' || contains(github.event.commits.*.message, '#skip')}}
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "afternoon-tundra-99825.herokuapp.com" #Must be unique in Heroku
-          heroku_email: "meeveritt@gmail.com"
-          healthcheck: "https://afternoon-tundra-99825.herokuapp.com/health"
-          checkstring: "ok"
-          rollbackonhealthcheckfailed: true
+      # - uses: akhileshns/heroku-deploy@v3.12.12 # This is the action
+      #   if: ${{ github.event_name == 'pull_request' || contains(github.event.commits.*.message, '#skip')}}
+      #   with:
+      #     heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+      #     heroku_app_name: "afternoon-tundra-99825.herokuapp.com" #Must be unique in Heroku
+      #     heroku_email: "meeveritt@gmail.com"
+      #     healthcheck: "https://afternoon-tundra-99825.herokuapp.com/health"
+      #     checkstring: "ok"
+      #     rollbackonhealthcheckfailed: true
       - uses: actions/checkout@v2
       - name: Bump version and push tag
         uses: anothrNick/github-tag-action@eca2b69f9e2c24be7decccd0f15fdb1ea5906598
