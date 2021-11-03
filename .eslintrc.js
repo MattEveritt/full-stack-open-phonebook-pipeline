@@ -4,7 +4,10 @@ module.exports = {
         'commonjs': true,
         'es2021': true
     },
-    'extends': 'eslint:recommended',
+    'extends': [
+        'eslint:recommended',
+        'react-app'
+    ],
     'parserOptions': {
         'ecmaVersion': 12
     },
